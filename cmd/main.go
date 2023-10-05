@@ -9,6 +9,7 @@ import (
 	"github.com/Murolando/hakaton_geo/pkg/handler"
 	"github.com/Murolando/hakaton_geo/pkg/repository"
 	"github.com/Murolando/hakaton_geo/pkg/repository/postgres"
+	repositoryImage "github.com/Murolando/hakaton_geo/pkg/repository_image"
 	"github.com/Murolando/hakaton_geo/pkg/service"
 	"github.com/joho/godotenv"
 )
@@ -31,8 +32,9 @@ func main() {
 		log.Fatal(err)
 	}
 
+	image := repositoryImage.NewImage()
 	repo := repository.NewRepository(db)
-	service := service.NewService(repo)
+	service := service.NewService(repo,image)
 	handler := handler.NewHandler(service)
 
 	s := new(srv.Server)

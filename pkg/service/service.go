@@ -3,6 +3,7 @@ package service
 import (
 	"github.com/Murolando/hakaton_geo/ent"
 	"github.com/Murolando/hakaton_geo/pkg/repository"
+	repositoryImage "github.com/Murolando/hakaton_geo/pkg/repository_image"
 )
 
 type Auth interface {
@@ -18,7 +19,7 @@ type Service struct {
 	Auth
 }
 
-func NewService(repo *repository.Repository) *Service {
+func NewService(repo *repository.Repository, image *repositoryImage.Image) *Service {
 	return &Service{
 		Auth: NewAuthService(repo),
 	}
