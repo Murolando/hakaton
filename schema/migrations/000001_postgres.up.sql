@@ -26,7 +26,6 @@ CREATE TABLE "class"
     description           VARCHAR(500),
     code                  VARCHAR(10) not null,
     created_at            TIMESTAMP(0) NOT NULL,
-
     comments_access       bool
 );
 
@@ -36,35 +35,23 @@ CREATE TABLE "user_class"
     user_id               int references "user"(id) on delete cascade,
     class_id              int references "class"(id) on delete cascade
 );
-
-CREATE TABLE "theme"
-(
-    id                    serial PRIMARY KEY not null unique,
-    name                  VARCHAR(100) not null,
-    class_id              int references "class"(id) on delete cascade,
-    theme_access          bool,
-    created_at            TIMESTAMP(0) NOT NULL
-);
 CREATE TABLE "lesson_type"
 (
     id                    serial PRIMARY KEY not null unique,
     name                  VARCHAR(100) not null
 );
 INSERT INTO "lesson_type" (name) values('theory');
-INSERT INTO "lesson_type" (name) values('test');
-INSERT INTO "lesson_type" (name) values('column');
-INSERT INTO "lesson_type" (name) values('coords');
+INSERT INTO "lesson_type" (name) values('kontur');
 CREATE TABLE "lesson"
 (
     id                    serial PRIMARY KEY not null unique,
     name                  VARCHAR(100) not null,
     video                 VARCHAR(200),
     lesson_type_id        int references "lesson_type"(id) on delete cascade,
-    theme_id              int references "theme"(id) on delete cascade,
+    class_id              int references "class"(id) on delete cascade,
     created_at            TIMESTAMP(0) NOT NULL,
     lesson_access         bool
 );
-
 CREATE TABLE "comment"
 (
     id                   serial PRIMARY KEY not null unique,
