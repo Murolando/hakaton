@@ -1,0 +1,146 @@
+definitions:
+  ent.Auth:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    type: object
+  ent.UserRequest:
+    properties:
+      login:
+        description: Name *string `json:"name"`
+        type: string
+      password:
+        type: string
+      role-id:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /api/auth/refresh/{refresh}:
+    get:
+      consumes:
+      - application/json
+      description: generate new pair of jwt and refresh
+      operationId: gen new tokens
+      parameters:
+      - description: old refresh token
+        in: path
+        name: refresh
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: NewRefreshJwtTokens
+      tags:
+      - auth
+  /api/auth/sign-in:
+    post:
+      consumes:
+      - application/json
+      description: auth in account
+      operationId: auth in account
+      parameters:
+      - description: email and password
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/ent.Auth'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+        default:
+          description: ""
+          schema:
+            additionalProperties: true
+            type: object
+      summary: SignIn
+      tags:
+      - auth
+  /api/auth/sign-up:
+    post:
+      consumes:
+      - application/json
+      description: create account
+      operationId: create-account
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/ent.UserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+        default:
+          description: ""
+          schema:
+            additionalProperties: true
+            type: object
+      summary: SignUp
+      tags:
+      - auth
+swagger: "2.0"

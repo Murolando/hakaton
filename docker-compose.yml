@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5434:5432"
+    networks:
+      - default
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: hakaton
+      POSTGRES_USER: postgres
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - default
+    depends_on:
+      - database
+    ports:
+      - "8083:8080"
+volumes:
+  data:
