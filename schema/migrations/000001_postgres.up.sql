@@ -42,6 +42,7 @@ CREATE TABLE "theme"
     id                    serial PRIMARY KEY not null unique,
     name                  VARCHAR(100) not null,
     class_id              int references "class"(id) on delete cascade,
+    theme_access          bool,
     created_at            TIMESTAMP(0) NOT NULL
 );
 CREATE TABLE "lesson_type"

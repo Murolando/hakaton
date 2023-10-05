@@ -14,13 +14,18 @@ type Auth interface {
 	NewRefreshToken(id int64) (string, error)
 	GetByRefreshToken(refresh string) (int64, error)
 }
+type Class interface{
+	AllClass()([]*ent.ClassResponce,error)
+}
 
 type Service struct {
+	Class
 	Auth
 }
 
 func NewService(repo *repository.Repository, image *repositoryImage.Image) *Service {
 	return &Service{
 		Auth: NewAuthService(repo),
+		Class: NewClassService(repo,image),
 	}
 }

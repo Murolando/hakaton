@@ -12,13 +12,17 @@ type Auth interface {
 	SetSession(user int64, refresh string, expiredAt string) error
 	GetByRefreshToken(refresh string) (int64, error)
 }
-
+type Class interface{
+	AllClass() ([]*ent.ClassResponce, error)
+}
 type Repository struct {
+	Class
 	Auth
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Auth: postgres.NewAuthPostgres(db),
+		Class: postgres.NewClassPostgres(db),
 	}
 }

@@ -144,4 +144,40 @@ paths:
       summary: SignUp
       tags:
       - auth
+  /api/class/:
+    get:
+      consumes:
+      - application/json
+      description: get lists class
+      operationId: get-classes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+        default:
+          description: ""
+          schema:
+            additionalProperties: true
+            type: object
+      summary: class
+      tags:
+      - class
 swagger: "2.0"
