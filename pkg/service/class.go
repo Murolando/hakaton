@@ -18,7 +18,7 @@ func NewClassService(repo *repository.Repository, repoImage *repositoryImage.Ima
 	}
 }
 
-func (s *ClassService) AllClass() ([]*ent.ClassResponce, error) {
+func (s *ClassService) AllClass() ([]*ent.ChildDashClassResponce, error) {
 	class,err := s.repo.AllClass()
 	if err!=nil{
 		return nil,err

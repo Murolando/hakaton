@@ -50,6 +50,7 @@ CREATE TABLE "lesson"
     lesson_type_id        int references "lesson_type"(id) on delete cascade,
     class_id              int references "class"(id) on delete cascade,
     created_at            TIMESTAMP(0) NOT NULL,
+    expired_at            TIMESTAMP(0) NOT NULL,
     lesson_access         bool
 );
 CREATE TABLE "user_result"
@@ -67,4 +68,10 @@ CREATE TABLE "comment"
     lesson_id            int references "lesson"(id) on delete cascade,
     author_id            int references "user"(id) on delete cascade,
     created_at           TIMESTAMP(0) NOT NULL
+);
+CREATE TABLE "kontur"
+(
+    id                   serial PRIMARY KEY not null unique,
+    name                 VARCHAR(100) not null,
+    image_src            VARCHAR(400) not null
 );

@@ -17,9 +17,9 @@ func NewClassPostgres(db *sqlx.DB) *ClassPostgres {
 	}
 }
 
-func (r *ClassPostgres) AllClass() ([]*ent.ClassResponce, error) {
+func (r *ClassPostgres) AllClass() ([]*ent.ChildDashClassResponce, error) {
 
-	list := make([]*ent.ClassResponce, 0)
+	list := make([]*ent.ChildDashClassResponce, 0)
 	query := fmt.Sprintf(`
 	SELECT id 
 	FROM "%s"
@@ -29,7 +29,7 @@ func (r *ClassPostgres) AllClass() ([]*ent.ClassResponce, error) {
 		return nil, err
 	}
 	for rows.Next() {
-		var class ent.ClassResponce
+		var class ent.ChildDashClassResponce
 		if err := rows.Scan(&class.Id); err != nil {
 			return nil, err
 		}

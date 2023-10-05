@@ -13,7 +13,7 @@ type Auth interface {
 	GetByRefreshToken(refresh string) (int64, error)
 }
 type Class interface{
-	AllClass() ([]*ent.ClassResponce, error)
+	AllClass() ([]*ent.ChildDashClassResponce, error)
 }
 type Repository struct {
 	Class
