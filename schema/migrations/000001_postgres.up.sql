@@ -52,6 +52,14 @@ CREATE TABLE "lesson"
     created_at            TIMESTAMP(0) NOT NULL,
     lesson_access         bool
 );
+CREATE TABLE "user_result"
+(
+    id                    serial PRIMARY KEY not null unique,
+    lesson_id             int references "lesson"(id) on delete cascade,
+    user_id               int references "user"(id) on delete cascade,
+    count                 int,
+    result                int
+);
 CREATE TABLE "comment"
 (
     id                   serial PRIMARY KEY not null unique,
