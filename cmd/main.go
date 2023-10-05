@@ -26,7 +26,6 @@ func main() {
 	dbPas := os.Getenv("DB_PASSWORD")
 	serverPort := os.Getenv("SERVER_PORT")
 	dbConfig := postgres.NewConfig(dbHost, dbPort, dbUserName, dbPas, dbName)
-	fmt.Println(dbConfig)
 	db, err := postgres.NewPostgresDB(dbConfig)
 	if err != nil {
 		log.Fatal(err)

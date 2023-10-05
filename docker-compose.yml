@@ -14,10 +14,31 @@ services:
       POSTGRES_DB: hakaton
       POSTGRES_USER: postgres
       PGDATA: "/var/lib/postgresql/data/pgdata"
+  minio:
+    image: minio/minio
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    # expose:
+    #   - "9000"
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ROOT_USER: moorik
+      MINIO_ROOT_PASSWORD: 123456с
+    command: server --console-address ":9001" /data
   api:
     build: 
       context: .
       dockerfile: Dockerfile
+    environment:
+      - ENDPOINT=http://minio:9000/
+      - REGION=ru-1
+      - AWS_ACCESS_KEY_ID=moorik
+      - AWS_SECRET_ACCESS_KEY=123456с
+      - BUCKET_NAME=1849ab3d-866b7a29-059e-4b31-b8ed-b9788e190712
+
     networks:
       - default
     depends_on:
@@ -26,3 +47,4 @@ services:
       - "8083:8080"
 volumes:
   data:
+  minio_storage:
