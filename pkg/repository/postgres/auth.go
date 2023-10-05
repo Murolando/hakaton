@@ -21,17 +21,12 @@ func NewAuthPostgres(db *sqlx.DB) *AuthPostgres {
 
 func (r *AuthPostgres) SignUp(user ent.User) (int64, error) {
 	var id int64
-	t := time.Now()
-	dateTime := fmt.Sprintf("%d-%02d-%02d %02d:%02d:%02d\n",
-		t.Year(), t.Month(), t.Day(),
-		t.Hour(), t.Minute(), t.Second())
-	user.RegistrationDateTime = &dateTime
 	query := fmt.Sprintf(`
 	INSERT INTO "%s"
-	(password_hash,login,role_id, registration_datetime) 
-	values ($1 , $2 ,$3 ,$4) RETURNING id`, userTable)
+	(password_hash,login,role_id,name) 
+	values ($1 , $2 ,$3,$4) RETURNING id`, userTable)
 	row := r.db.QueryRow(query,
-		user.PasswordHash, user.Login, user.RoleId, user.RegistrationDateTime)
+		user.PasswordHash, user.Login, user.RoleId,user.Name)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
 	}

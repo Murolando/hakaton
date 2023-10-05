@@ -11,7 +11,7 @@ CREATE TABLE "user"
 (
     id                    serial PRIMARY KEY not null unique,
     name                  VARCHAR(64) not null,
-    mail                  VARCHAR(40) unique not null,
+    login                 VARCHAR(40) unique not null,
     image_src             varchar(500),
     password_hash         varchar(255) not null,
     role_id               int references "role"(id) on delete cascade,

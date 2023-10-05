@@ -9,7 +9,8 @@ definitions:
   ent.UserRequest:
     properties:
       login:
-        description: Name *string `json:"name"`
+        type: string
+      name:
         type: string
       password:
         type: string

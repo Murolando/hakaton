@@ -214,7 +214,9 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "login": {
-                    "description": "Name *string ` + "`" + `json:\"name\"` + "`" + `",
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 },
                 "password": {
