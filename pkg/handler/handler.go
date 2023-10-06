@@ -35,15 +35,20 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			auth.POST("/sign-in", h.signIn)
 			auth.GET("/refresh/:refresh", h.newRefresh)
 		}
-		class:= api.Group("/class")
+		class := api.Group("/class")
 		{
-			class.GET("/dashboard",h.userIdentity,h.dashboardClass)
-			class.GET("/my-classes",h.userIdentity,h.myClass)
-			class.GET("/:class_id",h.userIdentity,h.oneClass)
+			class.GET("/dashboard", h.userIdentity, h.dashboardClass)
+			class.GET("/my-classes", h.userIdentity, h.myClass)
+			class.GET("/:class_id", h.userIdentity, h.oneClass)
 			// class.DELETE("/class_id",)
 			// class.PUT("/class_id",)
 			// class.POST("/",)
 
+		}
+		kontur := api.Group("/kontur")
+		{
+			kontur.GET("/start-game/:n", h.StartKonturGame)
+			kontur.PUT("/process-game", h.userIdentity, h.ProcessKonturGame)
 		}
 	}
 	return router

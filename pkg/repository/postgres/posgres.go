@@ -16,13 +16,14 @@ type Config struct {
 }
 
 const (
-	userTable = "user"
-	classTable = "class"
-	lessonTable = "lesson"
-	userClassTable = "user_class"
-	roleTable = "role"
+	userTable       = "user"
+	classTable      = "class"
+	essonTable      = "lesson"
+	userClassTable  = "user_class"
+	roleTable       = "role"
 	lessonTypeTable = "lesson_type"
-	
+	konturTable     = "kontur"
+	konturResult    = "user_kontur_result"
 )
 
 func NewConfig(host string, port string, user string, password string, dbname string) *Config {
