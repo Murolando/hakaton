@@ -25,7 +25,7 @@ func (s *KonturService) StartKonturGame(n int) ([]*ent.KonturResponse, error) {
 	}
 	return kontur, nil
 }
-func (s *KonturService) ProcessKonturGame(params *ent.ProcessRequest, userId int) (*ent.ProcessResponse, error) {
+func (s *KonturService) ProcessKonturGame(params *ent.ProcessRequest, userId int64) (*ent.ProcessResponse, error) {
 	kontur, err := s.repo.ProcessKonturGame(params, userId)
 	if err != nil {
 		return nil, err

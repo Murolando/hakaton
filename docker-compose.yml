@@ -45,6 +45,14 @@ services:
       - database
     ports:
       - "8083:8080"
+  nginx_front:
+    build: 
+      context: "./nginx_front"
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - "api"
 volumes:
   data:
   minio_storage:

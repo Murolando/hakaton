@@ -22,7 +22,7 @@ type Class interface {
 }
 type Kontur interface {
 	StartKonturGame(n int) ([]*ent.KonturResponse, error)
-	ProcessKonturGame(params *ent.ProcessRequest, userId int) (*ent.ProcessResponse, error)
+	ProcessKonturGame(params *ent.ProcessRequest, userId int64) (*ent.ProcessResponse, error)
 }
 type Service struct {
 	Kontur

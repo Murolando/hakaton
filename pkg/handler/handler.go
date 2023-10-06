@@ -47,8 +47,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		}
 		kontur := api.Group("/kontur")
 		{
-			kontur.GET("/start-game/:n", h.StartKonturGame)
-			kontur.PUT("/process-game", h.userIdentity, h.ProcessKonturGame)
+			kontur.GET("/start-game/:n", h.startKonturGame)
+			kontur.PUT("/process-game", h.userIdentity, h.processKonturGame)
 		}
 	}
 	return router

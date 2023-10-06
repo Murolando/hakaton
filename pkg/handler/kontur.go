@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -19,7 +20,7 @@ import (
 // @Failure 500 {object} map[string]interface{}
 // @Failure default {object} map[string]interface{}
 // @Router /api/class/ [get]
-func (h *Handler) StartKonturGame(c *gin.Context) {
+func (h *Handler) startKonturGame(c *gin.Context) {
 
 	count_quiz, err := strconv.Atoi(c.Param("n"))
 	if err != nil {
@@ -37,14 +38,15 @@ func (h *Handler) StartKonturGame(c *gin.Context) {
 	newResponse(c, "kontur", kontur)
 }
 
-func (h *Handler) ProcessKonturGame(c *gin.Context) {
+func (h *Handler) processKonturGame(c *gin.Context) {
 	var input ent.ProcessRequest
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
 	cont, _ := c.Get("userId")
-	userId := cont.(int)
+	userId := cont.(int64)
+	fmt.Println(userId)
 	kontur, err := h.service.ProcessKonturGame(&input, userId)
 	if err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())

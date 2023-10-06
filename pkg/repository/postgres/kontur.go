@@ -63,24 +63,27 @@ func (r *KonturPostgres) StartKonturGame(n int) ([]*ent.KonturResponse, error) {
 	return list, nil
 }
 
-func (r *KonturPostgres) ProcessKonturGame(params *ent.ProcessRequest, userId int) (*ent.ProcessResponse, error) {
-	winRate := 0
+func (r *KonturPostgres) ProcessKonturGame(params *ent.ProcessRequest, userId int64) (*ent.ProcessResponse, error) {
+	var winRate int64
 	for _, v := range params.Answers {
 		if v {
 			winRate += 1
 		}
 	}
+	var id int
 	query := fmt.Sprintf(`
-		SELECT * 
+		SELECT id 
 		FROM "%s"
-		WHERE user_id = "%s" AND lesson_id = "%s"
-		`, konturTable, userId, params.LessonId)
-
-	rows, err := r.db.Query(query)
-	if err != nil {
-		return nil, err
+		WHERE user_id = $1 AND lesson_id = $2
+		`, konturResultTable)
+	row := r.db.QueryRow(query, userId,params.LessonId)
+	if err := row.Scan(&id); err != nil {
+		fmt.Println(id)
+		// return nil, err
 	}
-	fmt.Println(rows)
-	return nil, nil
+
+	var grade ent.ProcessResponse
+	grade.Grade = winRate
+	return &grade, nil
 
 }
