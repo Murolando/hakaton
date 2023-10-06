@@ -12,11 +12,12 @@ type ChildDashClassResponce struct {
 }
 
 type ChildMyClassResponce struct {
-	Id            int64                  `json:"id"`
-	Name          string                 `json:"class-name"`
-	TeacherName   string                 `json:"teacher-name"`
-	ChildCount    int64                  `json:"child-count"`
-	ClassProgress *ClassProgressResponce `json:"class_progress"`
+	Id             int64  `json:"id"`
+	Name           string `json:"class-name"`
+	TeacherName    string `json:"teacher-name"`
+	ChildCount     int64  `json:"child-count"`
+	ProgressBar    int    `json:"progress_now"`
+	MaxProgressBar int    `json:"max_count"`
 }
 
 type ClassProgressResponce struct {

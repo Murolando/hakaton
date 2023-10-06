@@ -187,6 +187,44 @@ paths:
       summary: class
       tags:
       - class
+  /api/class/my-classes:
+    get:
+      consumes:
+      - application/json
+      description: get child class
+      operationId: get-classes child
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+        default:
+          description: ""
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - JwtKey: []
+      summary: class
+      tags:
+      - class
 securityDefinitions:
   JwtKey:
     in: header

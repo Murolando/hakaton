@@ -15,8 +15,8 @@ type Auth interface {
 	GetByRefreshToken(refresh string) (int64, error)
 }
 type Class interface{
-	AllClass(userId int64)(*ent.ChildDashClassResponce,error)
-	
+	DashboardClass(userId int64)(*ent.ChildDashClassResponce,error)
+	MyClass(userId int64)([]*ent.ChildMyClassResponce,error)
 }
 
 type Service struct {

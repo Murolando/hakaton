@@ -20,6 +20,7 @@ const (
 	classTable = "class"
 	lessonTable = "lesson"
 	userClassTable = "user_class"
+	
 )
 
 func NewConfig(host string, port string, user string, password string, dbname string) *Config {

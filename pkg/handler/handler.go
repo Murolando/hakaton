@@ -37,7 +37,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		}
 		class:= api.Group("/class")
 		{
-			class.GET("/dashboard",h.userIdentity,h.allClass)
+			class.GET("/dashboard",h.userIdentity,h.dashboardClass)
+			class.GET("/my-classes",h.userIdentity,h.myClass)
 			// class.GET("/class_id",)
 			// class.DELETE("/class_id",)
 			// class.PUT("/class_id",)

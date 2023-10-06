@@ -18,9 +18,9 @@ func NewClassService(repo *repository.Repository, repoImage *repositoryImage.Ima
 	}
 }
 
-func (s *ClassService) AllClass(userId int64) (*ent.ChildDashClassResponce, error) {
+func (s *ClassService) DashboardClass(userId int64) (*ent.ChildDashClassResponce, error) {
 	var responce ent.ChildDashClassResponce
-	class,err := s.repo.AllClass(userId)
+	class,err := s.repo.DashboardClass(userId)
 	if err!=nil{
 		return nil,err
 	}
@@ -38,3 +38,6 @@ func (s *ClassService) AllClass(userId int64) (*ent.ChildDashClassResponce, erro
 }
 
 
+func (s *ClassService) MyClass(userId int64)([]*ent.ChildMyClassResponce,error){
+	return s.repo.Class.MyClass(userId)
+}
