@@ -197,9 +197,14 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/class/": {
+        "/api/class/dashboard": {
             "get": {
-                "description": "get lists class",
+                "security": [
+                    {
+                        "JwtKey": []
+                    }
+                ],
+                "description": "get child dashboard",
                 "consumes": [
                     "application/json"
                 ],
@@ -274,22 +279,29 @@ const docTemplate = `{
                 "password": {
                     "type": "string"
                 },
-                "role-id": {
+                "role_id": {
                     "type": "integer"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "JwtKey": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
-	Host:             "",
-	BasePath:         "",
+	Version:          "1.0",
+	Host:             "localhost:8083",
+	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
+	Title:            "Hakaton",
+	Description:      "API Server for Site and Admin Application",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

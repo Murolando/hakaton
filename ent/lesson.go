@@ -1,3 +1,5 @@
 package ent
 
-LessonRating 
+type LessonRating struct{
+	
+}

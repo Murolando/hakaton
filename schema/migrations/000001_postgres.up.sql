@@ -53,11 +53,12 @@ CREATE TABLE "lesson"
     expired_at            TIMESTAMP(0) NOT NULL,
     lesson_access         bool
 );
-CREATE TABLE "user_result"
+CREATE TABLE "user_kontur_result"
 (
     id                    serial PRIMARY KEY not null unique,
     lesson_id             int references "lesson"(id) on delete cascade,
     user_id               int references "user"(id) on delete cascade,
+    max_count             int,
     count                 int,
     result                int
 );

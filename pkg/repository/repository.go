@@ -13,7 +13,8 @@ type Auth interface {
 	GetByRefreshToken(refresh string) (int64, error)
 }
 type Class interface{
-	AllClass() ([]*ent.ChildDashClassResponce, error)
+	AllClass(userId int64) ([]*ent.ClassProgressResponce, error)
+	CommonProgressInfo(userId int64)(*ent.ChildDashClassResponce,error)
 }
 type Repository struct {
 	Class

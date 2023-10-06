@@ -1,8 +1,13 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "description": "API Server for Site and Admin Application",
+        "title": "Hakaton",
+        "contact": {},
+        "version": "1.0"
     },
+    "host": "localhost:8083",
+    "basePath": "/",
     "paths": {
         "/api/auth/refresh/{refresh}": {
             "get": {
@@ -185,9 +190,14 @@
                 }
             }
         },
-        "/api/class/": {
+        "/api/class/dashboard": {
             "get": {
-                "description": "get lists class",
+                "security": [
+                    {
+                        "JwtKey": []
+                    }
+                ],
+                "description": "get child dashboard",
                 "consumes": [
                     "application/json"
                 ],
@@ -262,10 +272,17 @@
                 "password": {
                     "type": "string"
                 },
-                "role-id": {
+                "role_id": {
                     "type": "integer"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "JwtKey": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }

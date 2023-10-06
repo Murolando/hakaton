@@ -4,17 +4,17 @@ type User struct {
 	Name         *string `json:"name"`
 	Login        *string `json:"login"`
 	PasswordHash *string `json:"password"`
-	RoleId       *int    `json:"role-id"`
+	RoleId       *int    `json:"role_id"`
 }
 type UserRequest struct {
 	Name         *string `json:"name"`
 	Login        *string `json:"login"`
 	PasswordHash *string `json:"password"`
-	RoleId       *int    `json:"role-id"`
+	RoleId       *int    `json:"role_id"`
 }
 type Session struct {
-	RefreshToken string `json:"refres-token"`
-	ExpiredAt    int64  `json:"expired-at"`
+	RefreshToken string `json:"refres_token"`
+	ExpiredAt    int64  `json:"expired_at"`
 }
 
 type Auth struct {

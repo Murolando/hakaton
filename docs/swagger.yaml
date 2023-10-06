@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   ent.Auth:
     properties:
@@ -14,11 +15,15 @@ definitions:
         type: string
       password:
         type: string
-      role-id:
+      role_id:
         type: integer
     type: object
+host: localhost:8083
 info:
   contact: {}
+  description: API Server for Site and Admin Application
+  title: Hakaton
+  version: "1.0"
 paths:
   /api/auth/refresh/{refresh}:
     get:
@@ -144,11 +149,11 @@ paths:
       summary: SignUp
       tags:
       - auth
-  /api/class/:
+  /api/class/dashboard:
     get:
       consumes:
       - application/json
-      description: get lists class
+      description: get child dashboard
       operationId: get-classes
       produces:
       - application/json
@@ -177,7 +182,14 @@ paths:
           schema:
             additionalProperties: true
             type: object
+      security:
+      - JwtKey: []
       summary: class
       tags:
       - class
+securityDefinitions:
+  JwtKey:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

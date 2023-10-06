@@ -18,10 +18,23 @@ func NewClassService(repo *repository.Repository, repoImage *repositoryImage.Ima
 	}
 }
 
-func (s *ClassService) AllClass() ([]*ent.ChildDashClassResponce, error) {
-	class,err := s.repo.AllClass()
+func (s *ClassService) AllClass(userId int64) (*ent.ChildDashClassResponce, error) {
+	var responce ent.ChildDashClassResponce
+	class,err := s.repo.AllClass(userId)
 	if err!=nil{
 		return nil,err
 	}
-	return class,nil
+	responce.ClassProgress = class
+	
+	r,err:= s.repo.CommonProgressInfo(userId)
+	if err !=nil{
+		return nil,err
+	}
+	responce.MaxExProgressBar = r.MaxExProgressBar
+	responce.MaxTheoryProgressBar = r.MaxTheoryProgressBar
+	responce.TheoryProgressBar = r.TheoryProgressBar
+	responce.ExProgressBar = r.ExProgressBar
+	return &responce,nil
 }
+
+

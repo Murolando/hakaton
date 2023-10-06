@@ -14,6 +14,17 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// @title Hakaton
+// @version 1.0
+// @description API Server for Site and Admin Application
+
+
+// @host localhost:8083
+// @BasePath /
+
+// @securityDefinitions.apikey JwtKey 
+// @in header
+// @name Authorization
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("error loading env variables:", err)
