@@ -39,7 +39,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			class.GET("/dashboard",h.userIdentity,h.dashboardClass)
 			class.GET("/my-classes",h.userIdentity,h.myClass)
-			// class.GET("/class_id",)
+			class.GET("/:class_id",h.userIdentity,h.oneClass)
 			// class.DELETE("/class_id",)
 			// class.PUT("/class_id",)
 			// class.POST("/",)

@@ -20,6 +20,8 @@ const (
 	classTable = "class"
 	lessonTable = "lesson"
 	userClassTable = "user_class"
+	roleTable = "role"
+	lessonTypeTable = "lesson_type"
 	
 )
 

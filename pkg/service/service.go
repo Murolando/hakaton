@@ -17,6 +17,8 @@ type Auth interface {
 type Class interface{
 	DashboardClass(userId int64)(*ent.ChildDashClassResponce,error)
 	MyClass(userId int64)([]*ent.ChildMyClassResponce,error)
+	IsClassMember(userId int64,classId int) (bool,error)
+	OneClass(classId int)(*ent.OneClassInfoResponce,error)
 }
 
 type Service struct {

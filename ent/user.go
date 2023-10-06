@@ -21,3 +21,8 @@ type Auth struct {
 	Login        *string `json:"login"`
 	PasswordHash *string `json:"password"`
 }
+type ClassUserResponce struct {
+	Name     *string `json:"name"`
+	RoleId   *int    `json:"role_id"`
+	RoleName *string `json:"role_name"`
+}

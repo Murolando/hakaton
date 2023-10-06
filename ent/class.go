@@ -26,3 +26,10 @@ type ClassProgressResponce struct {
 	ProgressBar    int    `json:"progress_now"`
 	MaxProgressBar int    `json:"max_count"`
 }
+
+type OneClassInfoResponce struct {
+	Id     int64                 `json:"id"`
+	Name   string                `json:"class-name"`
+	User   []*ClassUserResponce  `json:"user"`
+	Lesson []*LessonInfoResponce `json:"lesson"`
+}

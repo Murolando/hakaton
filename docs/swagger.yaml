@@ -149,6 +149,50 @@ paths:
       summary: SignUp
       tags:
       - auth
+  /api/class/{class_id}:
+    get:
+      consumes:
+      - application/json
+      description: get one class
+      operationId: get-one class
+      parameters:
+      - description: Class ID
+        in: path
+        name: class_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+        default:
+          description: ""
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - JwtKey: []
+      summary: class
+      tags:
+      - class
   /api/class/dashboard:
     get:
       consumes:

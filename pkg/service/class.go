@@ -41,3 +41,11 @@ func (s *ClassService) DashboardClass(userId int64) (*ent.ChildDashClassResponce
 func (s *ClassService) MyClass(userId int64)([]*ent.ChildMyClassResponce,error){
 	return s.repo.Class.MyClass(userId)
 }
+
+func (s *ClassService) IsClassMember(userId int64,classId int) (bool,error){
+	return s.repo.IsClassMember(userId,classId)
+}
+
+func (s *ClassService) OneClass(classId int)(*ent.OneClassInfoResponce,error){
+	return s.repo.OneClass(classId)
+}
